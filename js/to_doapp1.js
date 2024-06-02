@@ -1,4 +1,4 @@
-function initializeApp() {
+function startTodoList() {
     const taskList = document.getElementById("taskList");
     const newTaskTitleInput = document.getElementById("newTaskTitle");
     const newTaskPrioritySelect = document.getElementById("newTaskPriority");
@@ -107,4 +107,4 @@ function initializeApp() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 }
-initializeApp();
+startTodoList();
