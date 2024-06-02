@@ -1,5 +1,3 @@
-// Contenido del archivo ./js/to_doapp1.js
-
 function initializeApp() {
     const taskList = document.getElementById("taskList");
     const newTaskTitleInput = document.getElementById("newTaskTitle");
@@ -9,32 +7,28 @@ function initializeApp() {
     const taskSearch = document.getElementById("taskSearch");
     const alertContainer = document.getElementById("alertContainer");
 
-    // Cargar tareas desde localStorage y combinar con las preexistentes
+
     let tasksArray = loadTasks();
 
-    // Si el localStorage está vacío, inicializar con listaTareas
     if (!tasksArray.length) {
-        tasksArray = listaTareas.slice(); // Clonar el array inicial para no modificar el original
-        saveTasks(tasksArray); // Guardar tareas iniciales en localStorage
+        tasksArray = listaTareas.slice();
+        saveTasks(tasksArray);
     }
 
-    // Imprimir todas las tareas
     printTasks(tasksArray);
-
-    // Evento para agregar una nueva tarea
     addTaskBtn.addEventListener('click', function () {
         const title = newTaskTitleInput.value;
         const priority = newTaskPrioritySelect.value;
 
         if (title !== "" && priority !== "all") {
             const newObjTask = {
-                id: Date.now(), // Generar un ID único
+                id: Date.now(),
                 titulo: title,
                 prioridad: priority
             };
 
             tasksArray.push(newObjTask);
-            saveTasks(tasksArray); // Guardar tareas en localStorage
+            saveTasks(tasksArray);
             printOneTask(newObjTask);
             newTaskTitleInput.value = "";
             newTaskPrioritySelect.value = "all";
@@ -44,18 +38,16 @@ function initializeApp() {
         }
     });
 
-    // Función para imprimir todas las tareas
     function printTasks(tasks) {
         taskList.innerHTML = "";
         tasks.forEach(task => printOneTask(task));
     }
 
-    // Función para imprimir una sola tarea
     function printOneTask(task) {
         let taskElement = document.createElement("div");
         taskElement.textContent = task.titulo;
         taskElement.classList.add("task");
-        taskElement.classList.add(task.prioridad); // Usar "prioridad" en lugar de "priority"
+        taskElement.classList.add(task.prioridad);
         taskElement.id = task.id;
 
         let deleteButton = document.createElement("button");
@@ -64,7 +56,7 @@ function initializeApp() {
 
         deleteButton.addEventListener("click", function () {
             tasksArray = tasksArray.filter(t => t.id !== task.id);
-            saveTasks(tasksArray); // Actualizar localStorage
+            saveTasks(tasksArray);
             taskElement.remove();
             showAlert('Tarea eliminada con éxito', 'error');
         });
@@ -73,7 +65,6 @@ function initializeApp() {
         taskList.appendChild(taskElement);
     }
 
-    // Filtrar tareas por prioridad y texto
     priorityFilter.addEventListener('change', filterTasks);
     taskSearch.addEventListener('input', filterTasks);
 
@@ -82,7 +73,7 @@ function initializeApp() {
         const searchText = taskSearch.value.toLowerCase();
 
         const filteredTasks = tasksArray.filter(task => {
-            const matchesPriority = priorityValue === 'all' || task.prioridad === priorityValue; // Usar "prioridad" en lugar de "priority"
+            const matchesPriority = priorityValue === 'all' || task.prioridad === priorityValue;
             const matchesText = task.titulo.toLowerCase().includes(searchText);
             return matchesPriority && matchesText;
         });
@@ -90,7 +81,6 @@ function initializeApp() {
         printTasks(filteredTasks);
     }
 
-    // Función para mostrar alertas personalizadas
     function showAlert(message, type) {
         const alert = document.createElement('div');
         alert.className = `alert ${type === 'success' ? 'success' : 'error'}`;
@@ -98,29 +88,23 @@ function initializeApp() {
 
         alertContainer.appendChild(alert);
 
-        // Mostrar la alerta
         setTimeout(() => {
             alert.classList.add('show');
         }, 10);
 
-        // Ocultar la alerta después de 3 segundos
         setTimeout(() => {
             alert.classList.remove('show');
             alert.addEventListener('transitionend', () => alert.remove());
         }, 3000);
     }
 
-    // Función para cargar tareas desde localStorage
     function loadTasks() {
         const tasks = localStorage.getItem('tasks');
         return tasks ? JSON.parse(tasks) : [];
     }
 
-    // Función para guardar tareas en localStorage
     function saveTasks(tasks) {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 }
-
-// Llamar a la función para inicializar la aplicación
 initializeApp();
