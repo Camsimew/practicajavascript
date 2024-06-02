@@ -1,4 +1,4 @@
-function startTodoList() {
+function startCamilaTodoList() {
     const taskList = document.getElementById("taskList");
     const newTaskTitleInput = document.getElementById("newTaskTitle");
     const newTaskPrioritySelect = document.getElementById("newTaskPriority");
@@ -55,7 +55,7 @@ function startTodoList() {
         deleteButton.classList.add("delete-btn");
 
         deleteButton.addEventListener("click", function () {
-            tasksArray = tasksArray.filter(t => t.id !== task.id);
+            tasksArray = tasksArray.filter(tarea => tarea.id !== task.id);
             saveTasks(tasksArray);
             taskElement.remove();
             showAlert('Tarea eliminada con éxito', 'error');
@@ -107,4 +107,4 @@ function startTodoList() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 }
-startTodoList();
+startCamilaTodoList();
