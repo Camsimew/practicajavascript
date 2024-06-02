@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP TODO'S CAMILA</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/data.js"></script>
+
+
+<body>
+    <h1>APP TODO'S CAMILA</h1>
+
+
+    <div class="menu-container">
+        <div class="menu">
+            <div>
+                <label for="newTaskTitle">Nueva tarea:</label>
+                <input type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Título de la tarea...">
+            </div>
+            <div>
+                <label for="newTaskPriority">Prioridad:</label>
+                <select name="newTaskPriority" id="newTaskPriority">
+                    <option value="all">Todas las prioridades</option>
+                    <option value="urgent">Urgente</option>
+                    <option value="daily">Diaria</option>
+                    <option value="monthly">Mensual</option>
+                </select>
+            </div>
+            <div>
+                <button class="add-task-btn" id="addTaskBtn">Agregar tarea</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu-container">
+        <div class="menu">
+            <div>
+                <label for="taskSearch">Buscar por prioridad:</label>
+                <select name="priorityFilter" id="priorityFilter">
+                    <option value="all">Todas las prioridades</option>
+                    <option value="urgent">Urgente</option>
+                    <option value="daily">Diaria</option>
+                    <option value="monthly">Mensual</option>
+                </select>
+            </div>
+            <div>
+                <label for="taskSearch">Buscar por tarea:</label>
+                <input type="text" name="taskSearch" id="taskSearch" placeholder="Buscar tarea...">
+            </div>
+        </div>
+    </div>
+    <div class="task-list" id="taskList"></div>
+
+    <div id="alertContainer" class="alert-container"></div>
+
+
+    <script src="./js/to_doapp1.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 100px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL2pvYjE4MTUtcmVtaXgtMDhhLWMuanBn.jpg');
+    background-color: #7b7979;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+
+}
+
+h1 {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: auto;
+}
+
+.menu-container>div {
+    margin-right: 10px;
+
+}
+
+.menu-container>div:last-child {
+    margin-right: 0;
+}
+
+label,
+input,
+select {
+    display: block;
+    margin-bottom: 5px;
+    margin-right: 8px;
+}
+
+input[type="text"],
+select {
+    padding: 8px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23444444" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 13a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M5 1a1 1 0 00-1 1v2a1 1 0 102 0V2h10a1 1 0 100-2H5zm1.293 5.293a1 1 0 00-1.414 1.414L8 9.414V17a1 1 0 102 0V9.414l2.707-2.707a1 1 0 10-1.414-1.414L8 6.586 6.293 4.879zM3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>');
+    background-size: 12px;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    width: 450px;
+}
+
+.menu-container .menu {
+    display: flex;
+    align-items: center;
+    width: 900px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 10px #444;
+    background-color: whitesmoke;
+
+
+
+}
+
+.menu-container .menu>div:last-child {
+    margin-right: 0;
+}
+
+.add-task-btn {
+    padding: 9px 35px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #d46d41;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    position: relative;
+    margin-top: 17px;
+
+}
+
+.add-task-btn:hover {
+    background-color: #f0a00c;
+}
+
+.task-list {
+    margin: 0 auto;
+    width: 900px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 10px #444;
+    background-color: whitesmoke;
+}
+
+.task {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    position: relative;
+    transition: background-color 0.3s;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.task.urgent {
+    background-color: #f60505b1;
+}
+
+.task.daily {
+    background-color: #ebc30fdd;
+}
+
+.task.monthly {
+    background-color: #32ac8e;
+}
+
+.task:hover {
+    background-color: #f9f9f9;
+}
+
+.task .delete-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    transition: opacity 0.3s, transform 0.3s;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+.task:hover .delete-btn {
+    opacity: 1;
+}
+
+.alert-container {
+    position: fixed;
+    top: 17px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.alert.show {
+    opacity: 1;
+}
+
+.alert.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.alert.error {
+    background-color: #f44336;
+    color: white;
+}
