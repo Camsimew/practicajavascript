@@ -1,8 +1,8 @@
 const listaTareas = [
     {
         id: '1',
-        titulo: 'Limpiar todo el piso',
-        prioridad: 'Semanal'
+        titulo: 'Barrer',
+        prioridad: 'Diario'
     },
 
     {
@@ -19,13 +19,13 @@ const listaTareas = [
 
     {
         id: '4',
-        titulo: 'Trabajar',
+        titulo: 'Dormir',
         prioridad: 'Urgente'
     },
 
     {
         id: '5',
-        titulo: 'Trabajar más horas traducción',
+        titulo: 'Trabajar 8000 horas',
         prioridad: 'Urgente'
     },
 
