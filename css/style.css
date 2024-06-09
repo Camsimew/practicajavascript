@@ -14,7 +14,7 @@ body {
     margin: auto 0;
     padding-top: 100px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL2pvYjE4MTUtcmVtaXgtMDhhLWMuanBn.jpg');
+    background-image: url('https://wallpapercave.com/wp/wp12296750.jpg');
     background-color: #7b7979;
     background-size: cover;
     background-repeat: no-repeat;
@@ -40,18 +40,14 @@ h1 {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin-bottom: 6px;
+    margin-top: 6px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     width: auto;
 }
 
-.menu-container>div {
-    margin-right: 10px;
-
-}
 
 .menu-container>div:last-child {
     margin-right: 0;
@@ -97,13 +93,12 @@ select {
     background-color: whitesmoke;
 
 
-
-
 }
 
 .menu-container .menu>div:last-child {
     margin-right: 0;
 }
+
 
 .add-task-btn {
     padding: 9px 35px;
@@ -115,6 +110,7 @@ select {
     font-size: 14px;
     transition: background-color 0.3s;
     position: relative;
+    width: 185px;
     margin-top: 17px;
     cursor: pointer;
 
