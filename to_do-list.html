@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APP TODO'S CAMILA</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/data.js"></script>
+    <script src="./js/data.js" defer></script>
 
+</head>
 
 <body>
     <h1>APP TODO'S CAMILA</h1>
-
 
     <div class="menu-container">
         <div class="menu">
@@ -33,10 +33,11 @@
             </div>
         </div>
     </div>
+
     <div class="menu-container">
         <div class="menu">
             <div>
-                <label for="taskSearch">Buscar por prioridad:</label>
+                <label for="priorityFilter">Buscar por prioridad:</label>
                 <select name="priorityFilter" id="priorityFilter">
                     <option value="all">Todas las prioridades</option>
                     <option value="urgent">Urgente</option>
@@ -50,12 +51,11 @@
             </div>
         </div>
     </div>
-    <div class="task-list" id="taskList"></div>
 
+    <div class="task-list" id="taskList"></div>
     <div id="alertContainer" class="alert-container"></div>
 
-
-    <script src="./js/to_doapp1.js"></script>
+    <script src="./js/to_doapp1.js" defer></script>
 
 </body>
 

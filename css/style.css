@@ -4,15 +4,23 @@
     box-sizing: border-box;
 }
 
+
+html {
+    overflow-y: scroll;
+
+}
+
 body {
-    margin: 0;
+    margin: auto 0;
     padding-top: 100px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL2pvYjE4MTUtcmVtaXgtMDhhLWMuanBn.jpg');
     background-color: #7b7979;
     background-size: cover;
     background-repeat: no-repeat;
+    background-blend-mode: difference;
     padding-bottom: 100px;
+    background-attachment: fixed;
 
 }
 
@@ -29,6 +37,7 @@ h1 {
 }
 
 .menu-container {
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
@@ -63,6 +72,7 @@ select {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 14px;
+    cursor: pointer;
 }
 
 select {
@@ -73,6 +83,7 @@ select {
     background-position: right 10px center;
     background-repeat: no-repeat;
     width: 450px;
+    cursor: pointer;
 }
 
 .menu-container .menu {
@@ -84,6 +95,7 @@ select {
     padding: 20px;
     box-shadow: 1px 1px 10px #444;
     background-color: whitesmoke;
+
 
 
 
@@ -104,6 +116,7 @@ select {
     transition: background-color 0.3s;
     position: relative;
     margin-top: 17px;
+    cursor: pointer;
 
 }
 
@@ -119,6 +132,7 @@ select {
     padding: 20px;
     box-shadow: 1px 1px 10px #444;
     background-color: whitesmoke;
+    cursor: pointer;
 }
 
 .task {
@@ -162,6 +176,7 @@ select {
     border-radius: 5px;
     background-color: #333;
     color: white;
+    cursor: pointer;
 }
 
 .task:hover .delete-btn {
@@ -182,20 +197,31 @@ select {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    font-size: 15px;
 }
 
 .alert.show {
     opacity: 1;
+    font-size: 15px;
 }
 
 .alert.success {
     background-color: #4caf50;
     color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+
 }
 
 .alert.error {
     background-color: #f44336;
     color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 15px;
 }
 
 @media (max-width: 768px) {
@@ -214,9 +240,7 @@ select {
 
     .task-list {
         width: calc(100% - 20px);
-        /* Resta el margen izquierdo y derecho para ajustarse al ancho total */
         padding: 10px;
-        /* Ajusta el relleno */
     }
 
 }
@@ -254,8 +278,6 @@ select {
 
     .task-list {
         width: calc(100% - 10px);
-        /* Resta el margen izquierdo y derecho para ajustarse al ancho total */
         padding: 5px;
-        /* Ajusta el relleno */
     }
 }

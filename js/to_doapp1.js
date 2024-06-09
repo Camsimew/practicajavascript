@@ -1,110 +1,114 @@
-function startCamilaTodoList() {
-    const taskList = document.getElementById("taskList");
-    const newTaskTitleInput = document.getElementById("newTaskTitle");
-    const newTaskPrioritySelect = document.getElementById("newTaskPriority");
-    const addTaskBtn = document.getElementById("addTaskBtn");
-    const priorityFilter = document.getElementById("priorityFilter");
-    const taskSearch = document.getElementById("taskSearch");
-    const alertContainer = document.getElementById("alertContainer");
+function iniciarListaDeTareas() {
+    const listaDeTareas = document.getElementById("taskList");
+    const inputTituloNuevaTarea = document.getElementById("newTaskTitle");
+    const selectPrioridadNuevaTarea = document.getElementById("newTaskPriority");
+    const botonAgregarTarea = document.getElementById("addTaskBtn");
+    const filtroPrioridad = document.getElementById("priorityFilter");
+    const buscarTarea = document.getElementById("taskSearch");
+    const contenedorDeAlertas = document.getElementById("alertContainer");
 
+    let arrayDeTareas = cargarTareas();
 
-    let tasksArray = loadTasks();
-
-    if (!tasksArray.length) {
-        tasksArray = listaTareas.slice();
-        saveTasks(tasksArray);
+    if (!arrayDeTareas.length) {
+        arrayDeTareas = listaTareas.slice();
+        guardarTareas(arrayDeTareas);
     }
 
-    printTasks(tasksArray);
-    addTaskBtn.addEventListener('click', function () {
-        const title = newTaskTitleInput.value;
-        const priority = newTaskPrioritySelect.value;
+    imprimirTareas(arrayDeTareas);
+    botonAgregarTarea.addEventListener('click', function () {
+        const titulo = inputTituloNuevaTarea.value;
+        const prioridad = selectPrioridadNuevaTarea.value;
 
-        if (title !== "" && priority !== "all") {
-            const newObjTask = {
-                id: Date.now(),
-                titulo: title,
-                prioridad: priority
+        if (titulo !== "" && prioridad !== "all") {
+            const nuevaTarea = {
+                id: generarIdUnico(),
+                titulo: titulo,
+                prioridad: prioridad
             };
 
-            tasksArray.push(newObjTask);
-            saveTasks(tasksArray);
-            printOneTask(newObjTask);
-            newTaskTitleInput.value = "";
-            newTaskPrioritySelect.value = "all";
-            showAlert('Tarea añadida con éxito', 'success');
+            arrayDeTareas.push(nuevaTarea);
+            guardarTareas(arrayDeTareas);
+            imprimirUnaTarea(nuevaTarea);
+            inputTituloNuevaTarea.value = "";
+            selectPrioridadNuevaTarea.value = "all";
+            mostrarAlerta('Tarea añadida con éxito', 'success');
         } else {
-            showAlert('Los campos tienen que estar llenos', 'error');
+            mostrarAlerta('Los campos tienen que estar llenos', 'error');
         }
     });
 
-    function printTasks(tasks) {
-        taskList.innerHTML = "";
-        tasks.forEach(task => printOneTask(task));
+    function imprimirTareas(tareas) {
+        listaDeTareas.innerHTML = "";
+        tareas.forEach(tarea => imprimirUnaTarea(tarea));
     }
 
-    function printOneTask(task) {
-        let taskElement = document.createElement("div");
-        taskElement.textContent = task.titulo;
-        taskElement.classList.add("task");
-        taskElement.classList.add(task.prioridad);
-        taskElement.id = task.id;
+    function imprimirUnaTarea(tarea) {
+        let elementoTarea = document.createElement("div");
+        elementoTarea.textContent = tarea.titulo;
+        elementoTarea.classList.add("task");
+        elementoTarea.classList.add(tarea.prioridad);
+        elementoTarea.id = tarea.id;
 
-        let deleteButton = document.createElement("button");
-        deleteButton.textContent = "Eliminar";
-        deleteButton.classList.add("delete-btn");
+        let botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "Eliminar";
+        botonEliminar.classList.add("delete-btn");
 
-        deleteButton.addEventListener("click", function () {
-            tasksArray = tasksArray.filter(tarea => tarea.id !== task.id);
-            saveTasks(tasksArray);
-            taskElement.remove();
-            showAlert('Tarea eliminada con éxito', 'error');
+        botonEliminar.addEventListener("click", function () {
+            arrayDeTareas = arrayDeTareas.filter(t => t.id !== tarea.id);
+            guardarTareas(arrayDeTareas);
+            elementoTarea.remove();
+            mostrarAlerta('Tarea eliminada con éxito', 'error');
         });
 
-        taskElement.appendChild(deleteButton);
-        taskList.appendChild(taskElement);
+        elementoTarea.appendChild(botonEliminar);
+        listaDeTareas.appendChild(elementoTarea);
     }
+    let idCounter = 0;
 
-    priorityFilter.addEventListener('change', filterTasks);
-    taskSearch.addEventListener('input', filterTasks);
+    function generarIdUnico() {
+        return idCounter++;
+    }
+    filtroPrioridad.addEventListener('change', filtrarTareas);
+    buscarTarea.addEventListener('input', filtrarTareas);
 
-    function filterTasks() {
-        const priorityValue = priorityFilter.value;
-        const searchText = taskSearch.value.toLowerCase();
+    function filtrarTareas() {
+        const valorPrioridad = filtroPrioridad.value;
+        const textoDeBusqueda = buscarTarea.value.toLowerCase();
 
-        const filteredTasks = tasksArray.filter(task => {
-            const matchesPriority = priorityValue === 'all' || task.prioridad === priorityValue;
-            const matchesText = task.titulo.toLowerCase().includes(searchText);
-            return matchesPriority && matchesText;
+        const tareasFiltradas = arrayDeTareas.filter(tarea => {
+            const coincidePrioridad = valorPrioridad === 'all' || tarea.prioridad === valorPrioridad;
+            const coincideTexto = tarea.titulo.toLowerCase().includes(textoDeBusqueda);
+            return coincidePrioridad && coincideTexto;
         });
 
-        printTasks(filteredTasks);
+        imprimirTareas(tareasFiltradas);
     }
 
-    function showAlert(message, type) {
-        const alert = document.createElement('div');
-        alert.className = `alert ${type === 'success' ? 'success' : 'error'}`;
-        alert.textContent = message;
+    function mostrarAlerta(mensaje, tipo) {
+        const alerta = document.createElement('div');
+        alerta.className = `alert ${tipo === 'success' ? 'success' : 'error'}`;
+        alerta.textContent = mensaje;
 
-        alertContainer.appendChild(alert);
+        contenedorDeAlertas.appendChild(alerta);
 
         setTimeout(() => {
-            alert.classList.add('show');
+            alerta.classList.add('show');
         }, 10);
 
         setTimeout(() => {
-            alert.classList.remove('show');
-            alert.addEventListener('transitionend', () => alert.remove());
+            alerta.classList.remove('show');
+            alerta.addEventListener('transitionend', () => alerta.remove());
         }, 3000);
     }
 
-    function loadTasks() {
-        const tasks = localStorage.getItem('tasks');
-        return tasks ? JSON.parse(tasks) : [];
+    function cargarTareas() {
+        const tareas = localStorage.getItem('tasks');
+        return tareas ? JSON.parse(tareas) : [];
     }
 
-    function saveTasks(tasks) {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+    function guardarTareas(tareas) {
+        localStorage.setItem('tasks', JSON.stringify(tareas));
     }
 }
-startCamilaTodoList();
+
+iniciarListaDeTareas();
