@@ -23,7 +23,8 @@ function iniciarListaDeTareas() {
             const nuevaTarea = {
                 id: generarIdUnico(),
                 titulo: titulo,
-                prioridad: prioridad
+                prioridad: prioridad,
+                completada: false
             };
 
             arrayDeTareas.push(nuevaTarea);
@@ -44,15 +45,27 @@ function iniciarListaDeTareas() {
 
     function imprimirUnaTarea(tarea) {
         let elementoTarea = document.createElement("div");
-        elementoTarea.textContent = tarea.titulo;
         elementoTarea.classList.add("task");
         elementoTarea.classList.add(tarea.prioridad);
+        elementoTarea.classList.toggle("completed", tarea.completada);
         elementoTarea.id = tarea.id;
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("custom-checkbox");
+        checkbox.checked = tarea.completada;
+        checkbox.addEventListener('change', function () {
+            tarea.completada = checkbox.checked;
+            guardarTareas(arrayDeTareas);
+            elementoTarea.classList.toggle("completed", tarea.completada);
+        });
+
+        let tituloTarea = document.createElement("span");
+        tituloTarea.textContent = tarea.titulo;
 
         let botonEliminar = document.createElement("button");
         botonEliminar.textContent = "Eliminar";
         botonEliminar.classList.add("delete-btn");
-
         botonEliminar.addEventListener("click", function () {
             arrayDeTareas = arrayDeTareas.filter(t => t.id !== tarea.id);
             guardarTareas(arrayDeTareas);
@@ -60,14 +73,18 @@ function iniciarListaDeTareas() {
             mostrarAlerta('Tarea eliminada con éxito', 'error');
         });
 
+        elementoTarea.appendChild(checkbox);
+        elementoTarea.appendChild(tituloTarea);
         elementoTarea.appendChild(botonEliminar);
         listaDeTareas.appendChild(elementoTarea);
     }
-    let idCounter = 0;
 
+
+    let idCounter = 0;
     function generarIdUnico() {
         return idCounter++;
     }
+
     filtroPrioridad.addEventListener('change', filtrarTareas);
     buscarTarea.addEventListener('input', filtrarTareas);
 
